@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="80dp"
+        android:text="Welcome to Study Zone! "
+        android:backgroundTint="#FFFFFF"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="sans-serif"
+        app:layout_constraintBottom_toTopOf="@+id/username_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/username_edit_text"
         android:layout_width="match_parent"
@@ -14,6 +34,11 @@
         android:layout_marginBottom="32dp"
         android:hint="Username"
         android:inputType="text"
+        android:backgroundTint="#FFFFFF"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toTopOf="@+id/password_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +53,11 @@
         android:layout_marginBottom="47dp"
         android:hint="Password"
         android:inputType="textPassword"
+        android:backgroundTint="#FFFFFF"
+        android:paddingLeft="10dp"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +71,10 @@
         android:layout_marginTop="31dp"
         android:layout_marginBottom="256dp"
         android:text="Log In"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -54,10 +88,15 @@
         android:layout_below="@id/password_edit_text"
         android:layout_marginBottom="184dp"
         android:text="Sign Up"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,51 +1,47 @@
 package com.example.milab_study_zone;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.milab_study_zone.databinding.ActivityLoginScreenBinding;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class loginScreen extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityLoginScreenBinding binding;
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
+    private Button signupButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.content_login_screen);
 
-        binding = ActivityLoginScreenBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        usernameEditText = findViewById(R.id.username_edit_text);
+        passwordEditText = findViewById(R.id.password_edit_text);
+        loginButton = findViewById(R.id.login_button);
 
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_login_screen);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                String username = usernameEditText.getText().toString();
+                String password = passwordEditText.getText().toString();
+
+                // TODO: Authentication with Node.JS Server
+                if (username.equals("user") && password.equals("password")) {
+                    Intent intent = new Intent(loginScreen.this, MapActivity.class);
+                    startActivity(intent);
+
+                //If there is an authentication problem
+                } else {
+                    Toast.makeText(loginScreen.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_login_screen);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
     }
-}
