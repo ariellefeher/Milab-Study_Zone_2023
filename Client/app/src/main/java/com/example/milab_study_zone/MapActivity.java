@@ -18,7 +18,7 @@ public class MapActivity extends AppCompatActivity {
 
         // Get the intent that started this activity and extract the username from it
         Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
+        String username = intent.getStringExtra("usernameEditText");
 
         // Find the TextViews in the layout
         usernameTextView = findViewById(R.id.username_text);
