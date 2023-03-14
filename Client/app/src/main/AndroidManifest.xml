@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <meta-data
+        android:name="com.google.android.gms.maps.v3.API_KEY"
+        android:value="AIzaSyBx5r4_Je3jDlJUcZ2U2IilPt-YW3C8Zxg" />
 
     <application
         android:allowBackup="true"
@@ -11,17 +18,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MilabStudyZone"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".EntreBuilding"
+            android:exported="false"
+            android:label="@string/title_activity_entre_building"
+            android:theme="@style/Theme.MilabStudyZone.NoActionBar" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".SignupActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".MapActivity"
-            android:exported="false">
+            android:exported="false" >
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -30,7 +46,7 @@
             android:name=".loginScreen"
             android:exported="true"
             android:label="@string/title_activity_login_screen"
-            android:theme="@style/Theme.MilabStudyZone.NoActionBar">
+            android:theme="@style/Theme.MilabStudyZone.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,7 +59,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
