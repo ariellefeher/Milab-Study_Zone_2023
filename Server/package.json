@@ -1,0 +1,19 @@
+{
+  "name": "study-zone",
+  "version": "1.0.0",
+  "description": "milab app develoment final project - study zones",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariellefeher/Milab-Study_Zone_2023.git"
+  },
+  "author": "Arielle Feher and Rotem Maniv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ariellefeher/Milab-Study_Zone_2023/issues"
+  },
+  "homepage": "https://github.com/ariellefeher/Milab-Study_Zone_2023#readme"
+}
