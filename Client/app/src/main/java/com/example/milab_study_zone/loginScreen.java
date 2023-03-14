@@ -23,8 +23,8 @@ public class loginScreen extends AppCompatActivity {
 
         usernameEditText = findViewById(R.id.username_edit_text);
         passwordEditText = findViewById(R.id.password_edit_text);
-        loginButton = findViewById(R.id.login_button);
 
+        loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,15 +33,24 @@ public class loginScreen extends AppCompatActivity {
 
                 // TODO: Authentication with Node.JS Server
                 if (username.equals("user") && password.equals("password")) {
-                    Intent intent = new Intent(loginScreen.this, MapActivity.class);
+                    Intent intent = new Intent(v.getContext(), MapActivity.class);
                     startActivity(intent);
 
-                //If there is an authentication problem
+                    //If there is an authentication problem
                 } else {
-                    Toast.makeText(loginScreen.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(loginScreen.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
 
+        signupButton = findViewById(R.id.signup_button);
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), SignupActivity.class);
+                startActivity(intent);
+            }
+
+        });
     }
+}
