@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class IvcherBuilding extends AppCompatActivity {
 
     private TextView placeNameTextView;
+    private TextView placeDescriptionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class IvcherBuilding extends AppCompatActivity {
             String placeDescription = extras.getString("placeDescription");
 
             placeNameTextView.setText(placeName);
+            placeDescriptionTextView.setText(placeDescription);
         }
     }
 }

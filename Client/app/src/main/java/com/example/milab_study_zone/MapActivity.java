@@ -16,6 +16,8 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Objects;
+
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private MapView mapView;
@@ -37,7 +39,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         LatLng lawLocation = new LatLng(32.17539745249123, 34.83469771667703);
         LatLng psychLocation = new LatLng(32.175146815029606, 34.83557905684961);
         LatLng compsciLocation = new LatLng(32.17679559749888, 34.8352507496006);
-        LatLng ivcherLocation = new LatLng(32.17732583354259, 34.83602497318829);
         LatLng hangarLocation = new LatLng(32.17628784318536, 34.83731263693219);
         LatLng libraryLocation = new LatLng(32.175806589096375, 34.83649321454971);
         LatLng govLocation = new LatLng(32.17553765186704, 34.83542852289298);
@@ -55,15 +56,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .position(compsciLocation)
                 .title("Computer Science Building");
         MarkerOptions markerOptions5 = new MarkerOptions()
-                .position(ivcherLocation)
-                .title("Ivcher Auditorium");
-        MarkerOptions markerOptions6 = new MarkerOptions()
                 .position(hangarLocation)
                 .title("Hangar");
-        MarkerOptions markerOptions7 = new MarkerOptions()
+        MarkerOptions markerOptions6 = new MarkerOptions()
                 .position(libraryLocation)
                 .title("Library");
-        MarkerOptions markerOptions8 = new MarkerOptions()
+        MarkerOptions markerOptions7 = new MarkerOptions()
                 .position(govLocation)
                 .title("Government Building");
 
@@ -74,14 +72,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         googleMap.addMarker(markerOptions5);
         googleMap.addMarker(markerOptions6);
         googleMap.addMarker(markerOptions7);
-        googleMap.addMarker(markerOptions8);
 
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(entreLocation);
         builder.include(lawLocation);
         builder.include(psychLocation);
         builder.include(compsciLocation);
-        builder.include(ivcherLocation);
         builder.include(hangarLocation);
         builder.include(libraryLocation);
         builder.include(govLocation);
@@ -128,7 +124,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public boolean onMarkerClick(Marker marker) {
         // Launch a separate activity when the marker is clicked
         String title = marker.getTitle();
-        switch (title) {
+        switch (Objects.requireNonNull(title)) {
             case "Entrepreneurship Building":
                 Intent intent1 = new Intent(this, EntreBuilding.class);
                 startActivity(intent1);
@@ -145,21 +141,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Intent intent4 = new Intent(this, CompSciBuilding.class);
                 startActivity(intent4);
                 break;
-            case "Ivcher":
-                Intent intent5 = new Intent(this, IvcherBuilding.class);
+            case "Hangar":
+                Intent intent5 = new Intent(this, HangarBuilding.class);
                 startActivity(intent5);
                 break;
-            case "Hangar":
-                Intent intent6 = new Intent(this, HangarBuilding.class);
+            case "Library":
+                Intent intent6 = new Intent(this, LibraryBuilding.class);
                 startActivity(intent6);
                 break;
-            case "Library":
-                Intent intent7 = new Intent(this, LibraryBuilding.class);
-                startActivity(intent7);
-                break;
             case "Government Building":
-                Intent intent8 = new Intent(this, GovBuilding.class);
-                startActivity(intent8);
+                Intent intent7 = new Intent(this, GovBuilding.class);
+                startActivity(intent7);
                 break;
 
         }
