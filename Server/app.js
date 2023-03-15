@@ -39,9 +39,9 @@ app.post('/signup', async (req, res) => {
 
     await user.save();
 
-    const token = await user.generateAuthToken();
+    // const token = await user.generateAuthToken();
 
-    res.status(201).send({ user, token });
+    res.status(201).send({ user, password });
 
   } catch (err) {
      res.status(400).send({ error: err.message });
@@ -50,7 +50,7 @@ app.post('/signup', async (req, res) => {
 });
 
 /*B. User Login */
-app.post('/login', async (req, res) => {
+app.get('/login', async (req, res) => {
   
   const { username, password } = req.body;
   
@@ -68,9 +68,9 @@ app.post('/login', async (req, res) => {
     }
    
   // If successful
-    const token = await user.generateAuthToken();
+  //  const token = await user.generateAuthToken();
    
-    res.send({ success: true, user, token });
+    res.send({ success: true, user, password });
   
   } catch (err) {
      res.status(400).send({ error: err.message });
@@ -79,23 +79,23 @@ app.post('/login', async (req, res) => {
 });
 
 /* Adding authentication verification */
-const auth = async (req, res, next) => {
-  try {
-    const token = req.header('Authorization').replace('Bearer ', '');
-    const decoded = jwt.verify(token, 'mysecretkey');
-    const user = await User.findOne({ _id: decoded._id });
-    if (!user) {
-      throw new Error();
-    }
-    req.user = user;
-    req.token = token;
-    next();
-  } catch (err) {
-    res.status(401).send({ error: 'No authentication' });
-  }
-};
+// const auth = async (req, res, next) => {
+//   try {
+//     const token = req.header('Authorization').replace('Bearer ', '');
+//     const decoded = jwt.verify(token, 'mysecretkey');
+//     const user = await User.findOne({ _id: decoded._id });
+//     if (!user) {
+//       throw new Error();
+//     }
+//     req.user = user;
+//     req.token = token;
+//     next();
+//   } catch (err) {
+//     res.status(401).send({ error: 'No authentication' });
+//   }
+// };
 
 /*Creating protected route for authentication */
-app.get('/profile', auth, (req, res) => {
-  res.send(req.user);
-});
+// app.get('/profile', auth, (req, res) => {
+//   res.send(req.user);
+// });

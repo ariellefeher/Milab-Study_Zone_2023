@@ -16,15 +16,6 @@
         android:theme="@style/Theme.MilabStudyZone"
         tools:targetApi="31" >
         <activity
-            android:name=".IvcherBuilding"
-            android:exported="false"
-            android:label="@string/title_activity_ivcher_building"
-            android:theme="@style/Theme.MilabStudyZone.NoActionBar" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".GovBuilding"
             android:exported="false"
             android:label="@string/title_activity_gov_building"
