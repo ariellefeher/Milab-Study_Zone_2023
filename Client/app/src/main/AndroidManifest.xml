@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +15,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MilabStudyZone"
         tools:targetApi="31">
+        <activity
+            android:name=".LawBuilding"
+            android:exported="false"
+            android:label="@string/title_activity_law_building"
+            android:theme="@style/Theme.MilabStudyZone.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBx5r4_Je3jDlJUcZ2U2IilPt-YW3C8Zxg" />
+
+        <activity
+            android:name=".EntreBuilding"
+            android:exported="false"
+            android:label="@string/title_activity_entre_building"
+            android:theme="@style/Theme.MilabStudyZone.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".SignupActivity"
             android:exported="false">
