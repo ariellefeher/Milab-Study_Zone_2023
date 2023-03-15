@@ -27,21 +27,9 @@ public class loginScreen extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String username = usernameEditText.getText().toString();
-                String password = passwordEditText.getText().toString();
-
-                // TODO: Authentication with Node.JS Server
-                if (username.equals("user") && password.equals("password")) {
-                    Intent intent = new Intent(v.getContext(), MapActivity.class);
-                    startActivity(intent);
-
-                    //If there is an authentication problem
-                } else {
-                    Toast.makeText(loginScreen.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
-                }
-            }
+            public void onClick(View v) { fetchLogin(v); }
         });
+
 
         signupButton = findViewById(R.id.signup_button);
         signupButton.setOnClickListener(new View.OnClickListener() {
@@ -52,5 +40,22 @@ public class loginScreen extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void fetchLogin(final View v){
+        String username = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
+
+        String url = "http://10.0.2.2:3000/login";
+
+        // TODO: Authentication with Node.JS Server
+        if (username.equals("user") && password.equals("password")) {
+            Intent intent = new Intent(v.getContext(), MapActivity.class);
+            startActivity(intent);
+
+                    //If there is an authentication problem
+        } else {
+            Toast.makeText(loginScreen.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+        }
     }
 }
