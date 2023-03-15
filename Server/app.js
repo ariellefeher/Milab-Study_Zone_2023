@@ -23,7 +23,7 @@ app.listen(port, () => {
 });
 
 /*A. User Registration */
-const User = require('./user');
+const User = require('./model/User');
 
 app.post('/signup', async (req, res) => {
   const { username, password } = req.body;
@@ -58,18 +58,19 @@ app.post('/login', async (req, res) => {
     const user = await User.findOne({ username });
    
     if (!user) {
-      return res.status(400).send({ error: 'Invalid username or password' });
+      res.json({ success: false, message: "Invalid login credentials" });
     }
    
     const isMatch = await bcrypt.compare(password, user.password);
    
     if (!isMatch) {
-      return res.status(400).send({ error: 'Invalid username or password' });
+      res.json({ success: false, message: "Invalid login credentials" });
     }
    
+  // If successful
     const token = await user.generateAuthToken();
    
-    res.send({ user, token });
+    res.send({ success: true, user, token });
   
   } catch (err) {
      res.status(400).send({ error: err.message });
@@ -90,7 +91,7 @@ const auth = async (req, res, next) => {
     req.token = token;
     next();
   } catch (err) {
-    res.status(401).send({ error: 'Please authenticate' });
+    res.status(401).send({ error: 'No authentication' });
   }
 };
 
@@ -98,145 +99,3 @@ const auth = async (req, res, next) => {
 app.get('/profile', auth, (req, res) => {
   res.send(req.user);
 });
-
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-
-// const uri = "mongodb+srv://<arielleandrotem>:<Milab123>@study-zones.wrx9of8.mongodb.net/?retryWrites=true&w=majority";
-
-// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-
-// const User = require("./model/User");
-// let app = express();
-
-
-// client.connect(err => {
-//   const collection = client.db("test").collection("devices");
-  
-//   // perform actions on the collection object
-
-//   client.close();
-// });
-
-// /* Logging in an existing user */
-// app.post("/login", async (req, res, next) =>{
-
-//   const password = req.body.password;
-//   try {
-    
-//     let user = await User.findOne({ username: req.body.username });
-  
-//   if(!user){
-  
-//   return res.status(400).json({
-  
-//   success: false,
-  
-//   msg: "User Does Not Exist"
-  
-//   });
-  
-//   }
-  
-//   const isMatch = await bcryptjs.compare(password, user.password);
-  
-//   if(!isMatch){
-  
-//   return res.status(400).json({
-//   success: false,
-//   msg: "Password Doesn't Match!"
-  
-//   });
-  
-//   }
-  
-//   const payload = {
-//     user: {
-//     id: user.id
-//     }
-//   }
-  
-//   jwt.sign(payload, process.env.jwtUserSecret,{
-  
-//   expiresIn: 360000
-//   }, (err, token) =>{
-  
-//   if(err) throw err; 
-//   res.status(200).json({
-  
-//     success: true,
-//     msg: "Login Successfull",
-//     token: token,
-//     user: user
-  
-//   });
-//   })
-  
-//   } catch(error){
-  
-//   console.log(error.message);
-  
-//   res.status(500).json({
-//   success: false,
-//   msg: "Server Error"
-  
-//   })
-//   }
-  
-//   })
-
-
-// /* Register a New User to the Study Zones App */
-// router.post("/signup",async (req, res, next) => {
-
-//     const { username, password } = req.body;
-    
-//     try{
-    
-//     let userExists = await User.findOne({ username: req.body.username});
-    
-//     if(userExists){
-//       return res.status(400).json({
-//       success: false,
-//       msg: "User already exists"
-//       });
-
-//     }
-    
-//       let user = new User();
-      
-//       user.username = username;
-      
-//       const salt = await bcryptjs.genSalt(10);
-      
-//       user.password = await bcryptjs.hash(password, salt);
-    
-//       await user.save();
-      
-//       const payload = {
-      
-//       user: {
-//         id: user.id
-//       }
-//     }
-    
-//     jwt.sign(payload, process.env.jwtUserSecret, {
-//     expiresIn: 360000
-//     }, (err, token) =>{
-    
-//     if(err) throw err;
-//       res.status(200).json({
-//       success: true,
-//       token: token
-//       })
-//     })
-    
-//     } catch(err) {
-//         console.log(err);
-//     }
-//     });
-
-// // const port = 8080;
-
-// // app.listen(port, () => {
-// //   console.log(`Listening on port ${port} woohoo!`);
-// // });

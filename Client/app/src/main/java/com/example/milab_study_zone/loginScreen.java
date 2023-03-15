@@ -5,10 +5,14 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.app.ProgressDialog;
+
+
 
 public class loginScreen extends AppCompatActivity {
     private EditText usernameEditText;
@@ -42,20 +46,40 @@ public class loginScreen extends AppCompatActivity {
         });
     }
 
+    // TODO: fix Login Process
     public void fetchLogin(final View v){
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
-        String url = "http://10.0.2.2:3000/login";
+        final LoginFetcher fetcher = new LoginFetcher(v.getContext());
+        fetcher.dispatchRequest(username, password, new LoginFetcher.LoginResponseListener() {
 
-        // TODO: Authentication with Node.JS Server
-        if (username.equals("user") && password.equals("password")) {
-            Intent intent = new Intent(v.getContext(), MapActivity.class);
-            startActivity(intent);
+            public void onResponse(LoginFetcher.LoginResponse response) {
+
+                if (response.isError) {
+                    Toast.makeText(v.getContext(), "Error with Authentication Process", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if (response.success == false) {
+                    Toast.makeText(v.getContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //if successful authentication
+                    Intent intent = new Intent(v.getContext(), MapActivity.class);
+                    startActivity(intent);
+            }
+
+        });
+
+
+//        if (username.equals("user") && password.equals("password")) {
+//            Intent intent = new Intent(v.getContext(), MapActivity.class);
+//            startActivity(intent);
 
                     //If there is an authentication problem
-        } else {
-            Toast.makeText(loginScreen.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
-        }
+//        } else {
+//            Toast.makeText(loginScreen.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
+//        }
     }
 }
