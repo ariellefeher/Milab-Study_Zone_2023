@@ -30,8 +30,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.getUiSettings().setZoomControlsEnabled(true);
 
         LatLng currentLocation = new LatLng(37.7749, -122.4194);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 12));
@@ -77,7 +75,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     public boolean onMarkerClick(Marker marker) {
         // Launch a separate activity when the marker is clicked
-        //Add the list page for when this location is clicked
         Intent intent = new Intent(this, EntreBuilding.class);
         intent.putExtra("placeName", "Example Place");
         intent.putExtra("placeDescription", "This is an example place.");
