@@ -11,4 +11,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_entre_building">EntreBuilding</string>
     <string name="title_activity_law_building">LawBuilding</string>
+    <string name="title_activity_psych_building">PsychBuilding</string>
 </resources>

@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LawBuilding extends AppCompatActivity {
+public class PsychBuilding extends AppCompatActivity {
 
     private TextView placeNameTextView;
     private TextView placeDescriptionTextView;
@@ -13,10 +13,10 @@ public class LawBuilding extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_law_building);
+        setContentView(R.layout.activity_psych_building);
 
-        placeNameTextView = findViewById(R.id.law_place_name);
-        placeDescriptionTextView = findViewById(R.id.law_place_description);
+        placeNameTextView = findViewById(R.id.psych_place_name);
+        placeDescriptionTextView = findViewById(R.id.psych_place_description);
 
         // Retrieve data from the marker that was clicked and update the UI elements
         Bundle extras = getIntent().getExtras();

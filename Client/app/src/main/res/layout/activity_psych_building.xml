@@ -4,22 +4,22 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/entre_place_name"
+        android:id="@+id/psych_place_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="30dp"
-        android:text="Entrepreneurship Building"
+        android:text="Psychology Building"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/entre_place_description"
+        android:id="@+id/psych_place_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/entre_place_name"
+        android:layout_below="@id/psych_place_name"
         android:layout_marginTop="6dp"
-        android:text="Adelson School of Entrepreneurship"
+        android:text="Baruch Ivcher School of Psychology and Tiomkin School of Economics"
         android:textAlignment="center"
         android:textSize="16sp" />
 
