@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EntreBuilding extends AppCompatActivity {
+public class LawBuilding extends AppCompatActivity {
 
     private TextView placeNameTextView;
     private TextView placeDescriptionTextView;
