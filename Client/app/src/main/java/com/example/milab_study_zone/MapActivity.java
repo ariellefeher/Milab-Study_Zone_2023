@@ -137,33 +137,31 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Intent intent2 = new Intent(this, LawBuilding.class);
                 startActivity(intent2);
                 break;
-            default:
-                Intent intent3 = new Intent(this, LawBuilding.class);
+            case "Psychology Building":
+                Intent intent3 = new Intent(this, PsychBuilding.class);
                 startActivity(intent3);
                 break;
-//            case "Psychology Building":
-//                Intent intent3 = new Intent(this, PsychBuilding.class);
-//                startActivity(intent3);
-//                break;
-//            case "Computer Science Building":
-//                Intent intent4 = new Intent(this, CompSciBuilding.class);
-//                startActivity(intent4);
-//                break;case "Ivcher":
-//                Intent intent5 = new Intent(this, IvcherBuilding.class);
-//                startActivity(intent5);
-//                break;
-//            case "Hangar":
-//                Intent intent6 = new Intent(this, HangarBuilding.class);
-//                startActivity(intent6);
-//                break;
-//            case "Library":
-//                Intent intent7 = new Intent(this, LibraryBuilding.class);
-//                startActivity(intent7);
-//                break;
-//            case "Government Building":
-//                Intent intent8 = new Intent(this, GovBuilding.class);
-//                startActivity(intent8);
-//                break;
+            case "Computer Science Building":
+                Intent intent4 = new Intent(this, CompSciBuilding.class);
+                startActivity(intent4);
+                break;
+            case "Ivcher":
+                Intent intent5 = new Intent(this, IvcherBuilding.class);
+                startActivity(intent5);
+                break;
+            case "Hangar":
+                Intent intent6 = new Intent(this, HangarBuilding.class);
+                startActivity(intent6);
+                break;
+            case "Library":
+                Intent intent7 = new Intent(this, LibraryBuilding.class);
+                startActivity(intent7);
+                break;
+            case "Government Building":
+                Intent intent8 = new Intent(this, GovBuilding.class);
+                startActivity(intent8);
+                break;
+
         }
         return true;
     }

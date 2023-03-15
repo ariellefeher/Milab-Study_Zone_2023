@@ -12,4 +12,9 @@
     <string name="title_activity_entre_building">EntreBuilding</string>
     <string name="title_activity_law_building">LawBuilding</string>
     <string name="title_activity_psych_building">PsychBuilding</string>
+    <string name="title_activity_comp_sci_building">CompSciBuilding</string>
+    <string name="title_activity_ivcher_building">IvcherBuilding</string>
+    <string name="title_activity_hangar_building">HangarBuilding</string>
+    <string name="title_activity_library_building">LibraryBuilding</string>
+    <string name="title_activity_gov_building">GovBuilding</string>
 </resources>
