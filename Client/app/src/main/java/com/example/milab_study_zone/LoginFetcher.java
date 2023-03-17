@@ -28,7 +28,7 @@ public class LoginFetcher {
             this.username = username;
             this.password = password;
             this.success = success;
-         //   this.lwtToken = lwtToken;
+
         }
     }
 

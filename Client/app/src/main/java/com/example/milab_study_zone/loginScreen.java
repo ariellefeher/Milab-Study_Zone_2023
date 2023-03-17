@@ -66,8 +66,9 @@ public class loginScreen extends AppCompatActivity {
                 }
 
                 //if successful authentication
-                    Intent intent = new Intent(v.getContext(), MapActivity.class);
-                    startActivity(intent);
+                    Intent intent2 = new Intent(v.getContext(), MapActivity.class);
+                    startActivity(intent2);
+
             }
 
         });

@@ -73,7 +73,7 @@ app.get("/login", async(req, res) => {
       if( password == user.password) {
         console.log("Login Success!!!");
         
-        return res.json({ success: true, message: "Success!" }); 
+        return res.json({ username: username, password: password, success: true}); 
       }
       else {
         console.log("Passwords don't match");
