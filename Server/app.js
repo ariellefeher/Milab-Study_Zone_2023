@@ -68,7 +68,7 @@ app.get("/login", async(req, res) => {
         console.log("User Not Found");
         return res.json({ success: false, message: "Invalid login credentials" });
       }
-      console.log("Found user in DB! The Username in DB: " + user.username + "The Password in DB: "+ user.password);
+      console.log("Found user in DB! The Username in DB: " + user.username + " The Password in DB: "+ user.password);
       
       if( password == user.password) {
         console.log("Login Success!!!");
