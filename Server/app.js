@@ -1,104 +1,86 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-//const jwt = require('jsonwebtoken');
+const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 const port = 3000; 
 
-app.use(bodyParser.json());
+const mongo_db_url = 'mongodb+srv://arielleandrotem:Milab123@study-zones.wrx9of8.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(mongo_db_url, {useNewUrlParser:true, useUnifiedTopology:true});
 
-/*Establishing Connection with MongoDB */
-mongoose.connect('mongodb+srv://arielleandrotem:Milab123@study-zones.wrx9of8.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true })
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch((err) => {
-    console.error('Error connecting to MongoDB', err);
-  });
+const db_name = "Study-Zones";
+const user_collection = "Users";
+
+const saltRounds = 10; 
+
+app.use(bodyParser.json());
 
 app.listen(port, () => {
   console.log(`Connected to port ${port} woohoo!`);
 });
 
-/*A. User Registration */
-const User = require("./model/User");
 
-app.post("/signup", async (req, res) => {
-  let username = req.query.username;
-  let password = req.query.password;
-  //const { username, password } = req.body;
 
-  try {
-    const existingUser = await User.findOne({ username });
+
+// /*A. User Registration */
+// //const User = require("./model/User");
+
+// app.post("/signup", async (req, res) => {
+//   let username = req.query.username;
+//   let password = req.query.password;
+//   //const { username, password } = req.body;
+
+//   try {
+//     const existingUser = await User.findOne({ username });
     
-    if (existingUser) {
-      return res.status(400).send({ error: 'Username already exists' });
-    }
+//     if (existingUser) {
+//       return res.status(400).send({ error: 'Username already exists' });
+//     }
 
-    const user = new User({ username, password });
+//     const user = new User({ username, password });
 
-    await user.save();
+//     await user.save();
 
-    // const token = await user.generateAuthToken();
+//     // const token = await user.generateAuthToken();
 
-    return res.status(201).send({ user, password });
+//     return res.status(201).send({ user, password });
 
-  } catch (err) {
-     return res.status(400).send({ error: err.message });
-  }
+//   } catch (err) {
+//      return res.status(400).send({ error: err.message });
+//   }
 
-});
+// });
 
 /*B. User Login */
-app.get("/login", (req, res) => {
+app.get("/login", async(req, res) => {
   let username = req.query.username;
   let password = req.query.password;
- // const { username, password } = req.body;
-  
-  try {
-    const user = User.findOne({ username });
-   
-    if (!user) {
-      return res.json({ success: false, message: "Invalid login credentials" });
-    }
-    
-    const isMatch = bcrypt.compare(password, user.password);
 
-    if (!isMatch) {
-      return res.json({ success: false, message: "Invalid login credentials" });
-    }
-   
-  // If successful
-  //  const token = await user.generateAuthToken();
-   
-    return res.send({ success: true, message: "Success!" });
-  
-  } catch (err) {
-     return res.status(400).send({ error: err.message });
-  }
+  console.log("Username: "+username + ", Password: "+password);
+
+    client.connect().then(async() => {
+      const info = client.db(db_name).collection(user_collection);
+      const user = await info.findOne({username: username});
+      
+      
+      if (user == null) {
+        console.log("User Not Found");
+        return res.json({ success: false, message: "Invalid login credentials" });
+      }
+      console.log("Found user in DB! The Username in DB: " + user.username + "The Password in DB: "+ user.password);
+      
+      if( password == user.password) {
+        console.log("Login Success!!!");
+        
+        return res.json({ success: true, message: "Success!" }); 
+      }
+      else {
+        console.log("Passwords don't match");
+
+        return res.json({ success: false, message: "Invalid login credentials" });
+      }
+           
+    });   
 
 });
-
-/* Adding authentication verification */
-// const auth = async (req, res, next) => {
-//   try {
-//     const token = req.header('Authorization').replace('Bearer ', '');
-//     const decoded = jwt.verify(token, 'mysecretkey');
-//     const user = await User.findOne({ _id: decoded._id });
-//     if (!user) {
-//       throw new Error();
-//     }
-//     req.user = user;
-//     req.token = token;
-//     next();
-//   } catch (err) {
-//     res.status(401).send({ error: 'No authentication' });
-//   }
-// };
-
-/*Creating protected route for authentication */
-// app.get('/profile', auth, (req, res) => {
-//   res.send(req.user);
-// });
