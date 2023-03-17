@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -25,33 +25,6 @@ userSchema.pre('save', async function(next) {
   next();
 });
 
-userSchema.methods.generateAuthToken = async function() {
-  const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, 'mysecretkey');
-  return token;
-};
-
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema, "Study-Zones.Users");
 
 module.exports = User;
-
-
-// const mongoose = require('mongoose');
-// const bcrypt = require('bcryptjs');
-// const jwt = require('jsonwebtoken');
-
-// const Schema = mongoose.Schema
-// const passportLocalMongoose = require('passport-local-mongoose');
-// var User = new Schema({
-//     username: {
-//         type: String
-//     },
-//     password: {
-//         type: String
-//     }
-// })
-  
-// User.plugin(passportLocalMongoose);
-  
-
-// module.exports = mongoose.model('User', User)

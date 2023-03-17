@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+//const jwt = require('jsonwebtoken');
 
 const app = express();
 const port = 3000; 
@@ -23,10 +23,12 @@ app.listen(port, () => {
 });
 
 /*A. User Registration */
-const User = require('./model/User');
+const User = require("./model/User");
 
-app.post('/signup', async (req, res) => {
-  const { username, password } = req.body;
+app.post("/signup", async (req, res) => {
+  let username = req.query.username;
+  let password = req.query.password;
+  //const { username, password } = req.body;
 
   try {
     const existingUser = await User.findOne({ username });
@@ -41,39 +43,40 @@ app.post('/signup', async (req, res) => {
 
     // const token = await user.generateAuthToken();
 
-    res.status(201).send({ user, password });
+    return res.status(201).send({ user, password });
 
   } catch (err) {
-     res.status(400).send({ error: err.message });
+     return res.status(400).send({ error: err.message });
   }
 
 });
 
 /*B. User Login */
-app.get('/login', async (req, res) => {
-  
-  const { username, password } = req.body;
+app.get("/login", (req, res) => {
+  let username = req.query.username;
+  let password = req.query.password;
+ // const { username, password } = req.body;
   
   try {
-    const user = await User.findOne({ username });
+    const user = User.findOne({ username });
    
     if (!user) {
-      res.json({ success: false, message: "Invalid login credentials" });
+      return res.json({ success: false, message: "Invalid login credentials" });
     }
-   
-    const isMatch = await bcrypt.compare(password, user.password);
-   
+    
+    const isMatch = bcrypt.compare(password, user.password);
+
     if (!isMatch) {
-      res.json({ success: false, message: "Invalid login credentials" });
+      return res.json({ success: false, message: "Invalid login credentials" });
     }
    
   // If successful
   //  const token = await user.generateAuthToken();
    
-    res.send({ success: true, user, password });
+    return res.send({ success: true, message: "Success!" });
   
   } catch (err) {
-     res.status(400).send({ error: err.message });
+     return res.status(400).send({ error: err.message });
   }
 
 });

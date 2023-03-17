@@ -1,2 +1,4 @@
-package com.example.milab_study_zone;public class StringRequest {
+package com.example.milab_study_zone;
+
+public class StringRequest {
 }
