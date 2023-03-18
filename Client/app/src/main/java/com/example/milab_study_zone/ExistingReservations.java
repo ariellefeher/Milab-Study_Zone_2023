@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ExistingReservations extends AppCompatActivity {
     private Button getResButton;
     private String username;
@@ -53,6 +57,7 @@ public class ExistingReservations extends AppCompatActivity {
                 }
 
                 //if successful
+
                 ReservationAdapter adapter = new ReservationAdapter(response.study_reservations);
                 recyclerView.setAdapter(adapter);
 

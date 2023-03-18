@@ -20,7 +20,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
     @Override
     public ReservationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reservation_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_reservation, parent, false);
         return new ReservationViewHolder(view);
     }
 
@@ -28,8 +28,8 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     public void onBindViewHolder(ReservationViewHolder holder, int position) {
         try {
             JSONObject reservation = study_reservations.getJSONObject(position);
-            holder.studyAreaTextView.setText(reservation.getString("study_area"));
-            holder.dateTextView.setText(reservation.getString("date"));
+            holder.studyAreaTextView.setText(reservation.getString("Location"));
+            holder.dateTextView.setText(reservation.getString("Day"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
