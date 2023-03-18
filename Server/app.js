@@ -150,10 +150,12 @@ app.get("/createreservation", async(req, res) => {
       const dayIsAvailable = await info.findOne({
         location: location,
         'study_reservations.Day': day,
-        'study_reservations.isAvailable': {$eq: false}
+        'study_reservations.isAvailable': true
       });
+
+      console.log("dayIsAvailable"+ dayIsAvailable)
     
-      if (dayIsAvailable) {
+      if (!dayIsAvailable) {
         console.log(`Day ${day}  not available for location ${location}`);
         return res.json({ success: false, error: `Day ${day} is not available for location ${location}` });
       }
