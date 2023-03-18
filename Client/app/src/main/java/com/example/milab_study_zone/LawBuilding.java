@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class LawBuilding extends AppCompatActivity {
 
@@ -16,7 +18,8 @@ public class LawBuilding extends AppCompatActivity {
     private TextView placeDescriptionTextView;
     private EditText dayEditText;
     private Button dayButton;
-
+    private Button getResButton;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +29,9 @@ public class LawBuilding extends AppCompatActivity {
         placeNameTextView = findViewById(R.id.law_place_name);
         placeDescriptionTextView = findViewById(R.id.law_place_description);
 
-        // Retrieve data from the marker that was clicked and update the UI elements
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String placeName = extras.getString("placeName");
-            String placeDescription = extras.getString("placeDescription");
+            placeNameTextView.setText("Law Building");
+            placeDescriptionTextView.setText("");
 
-            placeNameTextView.setText(placeName);
-            placeDescriptionTextView.setText(placeDescription);
-        }
         Button backButtonLaw = findViewById(R.id.backButtonLaw);
         backButtonLaw.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +48,18 @@ public class LawBuilding extends AppCompatActivity {
                reserve(v);
             }
         });
+
+        recyclerView = (RecyclerView) findViewById(R.id.buildingRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        getResButton = findViewById(R.id.existResButton);
+        getResButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fetchReservations(v);
+            }
+        });
+
+        fetchReservations(getResButton); // automatically fetch reservations on activity creation
     }
 
     private void reserve(final View v) {
@@ -85,6 +94,26 @@ public class LawBuilding extends AppCompatActivity {
         });
 
 
+    }
+
+    public void fetchReservations(final View v) {
+        final GetStudyZoneFetcher fetcher = new GetStudyZoneFetcher(v.getContext());
+        fetcher.dispatchRequest("Law Building", new GetStudyZoneFetcher.GetStudyZoneResListener() {
+
+            public void onResponse(GetStudyZoneFetcher.GetStudyZoneResponse response) {
+
+                if (response.isError) {
+                    Toast.makeText(v.getContext(), "Error Fetching User Reservations", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //if successful
+                BuildingAdapter adapter = new BuildingAdapter(response.study_reservations);
+                recyclerView.setAdapter(adapter);
+
+            }
+
+        });
     }
 
 }

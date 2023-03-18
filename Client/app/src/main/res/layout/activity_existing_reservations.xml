@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="0.0"
         tools:context=".ExistingReservations"
         tools:itemCount="5"
-        tools:listitem="@layout/item_reservation"
+        tools:listitem="@layout/available_building_reservations"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
