@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
 const MongoClient = require('mongodb').MongoClient;
 
 /*Creating Server Connection */
@@ -14,8 +13,6 @@ const client = new MongoClient(mongo_db_url, {useNewUrlParser:true, useUnifiedTo
 const db_name = "Study-Zones";
 const user_collection = "Users";
 const study_zone_collection = "Available-Areas";
-
-//const saltRounds = 10; 
 
 app.use(bodyParser.json());
 
@@ -48,7 +45,6 @@ app.post("/signup", async (req, res) => {
       return res.json({username: username, password: password, success: true});
 
     });
-   // client.close();
 
 });
 
@@ -81,12 +77,6 @@ app.get("/login", async(req, res) => {
         return res.json({ success: false, message: "Invalid login credentials" });
       }
            
-    }); 
-    
-<<<<<<< HEAD
-    //client.close();
-=======
-   // client.close();
->>>>>>> ea7aea8d73485f0d80cbab882a56aa3480d8eb52
+  });
 
 });
