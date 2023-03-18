@@ -13,10 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ExistingReservations extends AppCompatActivity {
     private Button getResButton;
     private String username;
     private String password;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +32,8 @@ public class ExistingReservations extends AppCompatActivity {
         username = intent.getStringExtra("username");
         password = intent.getStringExtra("password");
 
-//       RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
-//       recyclerView.setLayoutManager(new LinearLayoutManager(this));
+       recyclerView = (RecyclerView) findViewById(R.id.reservationsRecyclerView);
+       recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         getResButton = findViewById(R.id.existResButton);
         getResButton.setOnClickListener(new View.OnClickListener() {
@@ -51,7 +56,9 @@ public class ExistingReservations extends AppCompatActivity {
                     return;
                 }
 
-                //if successful authentication
+                //if successful
+                ReservationAdapter adapter = new ReservationAdapter(response.study_reservations);
+                recyclerView.setAdapter(adapter);
 
             }
 

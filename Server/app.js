@@ -58,8 +58,7 @@ app.get("/login", async(req, res) => {
     client.connect().then(async() => {
       const info = client.db(db_name).collection(user_collection);
       const user = await info.findOne({username: username});
-      
-      
+       
       if (user == null) {
         console.log("User Not Found");
         return res.json({ success: false, message: "Invalid login credentials" });
@@ -78,8 +77,6 @@ app.get("/login", async(req, res) => {
       }
            
     }); 
-    
-
 });
 
 
@@ -88,18 +85,19 @@ app.get("/getreservations", async(req, res) => {
   let username = req.query.username;
   let password = req.query.password;
 
-  console.log("Input - Username: "+username + ", Password: "+password);
+  console.log("Input - Username: "+ username + ", Password: "+password);
 
     client.connect().then(async() => {
       const info = client.db(db_name).collection(user_collection);
       const user = await info.findOne({username: username});
-      
       
       if (user == null) {
         console.log("User Not Found");
         return res.json({ success: false, message: "Invalid login credentials" });
       }
 
+      //If Successful
+        console.log("Fetching User Reservation Array...");
         return res.json({ username: username, success: true, study_reservations: user.study_reservations}); 
           
     }); 
