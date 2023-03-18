@@ -1,4 +1,5 @@
 package com.example.milab_study_zone;
+
 import android.content.Context;
 
 import com.android.volley.Request;
@@ -11,18 +12,19 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LoginFetcher {
-    private RequestQueue _queue;
-    private final static String REQUEST_URL = "http://10.0.2.2:3000/login";
+public class SignupFetcher {
 
-    public class LoginResponse {
+    private RequestQueue _queue;
+    private final static String REQUEST_URL = "http://10.0.2.2:3000/signup";
+
+    public class SignupResponse {
         public boolean isError;
         public String username;
         public String password;
         public Boolean success;
 
 
-        public LoginResponse(boolean isError, String username, String password, Boolean success) {
+        public SignupResponse(boolean isError, String username, String password, Boolean success) {
             this.isError = isError;
             this.username = username;
             this.password = password;
@@ -31,27 +33,27 @@ public class LoginFetcher {
         }
     }
 
-    public interface LoginResponseListener {
-        public void onResponse(LoginResponse response);
+    public interface SignupResponseListener {
+        public void onResponse(SignupResponse response);
     }
 
-    public LoginFetcher(Context context) {
+    public SignupFetcher(Context context) {
         _queue = Volley.newRequestQueue(context);
     }
 
-    private LoginResponse createErrorResponse() {
-        return new LoginResponse(true, null, null, null);
+    private SignupResponse createErrorResponse() {
+        return new SignupResponse(true, null, null, null);
     }
 
-    public void dispatchRequest(final String username, final String password, final LoginResponseListener listener) {
+    public void dispatchRequest(final String username, final String password, final SignupResponseListener listener) {
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL + "?username=" + username + "&password=" + password, null,
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.POST, REQUEST_URL + "?username=" + username + "&password=" + password, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
 
                         try {
-                            LoginResponse res = new LoginResponse(false,
+                            SignupResponse res = new SignupResponse(false,
                                     response.getString("username"),
                                     response.getString("password"),
                                     response.getBoolean("success"));
@@ -72,11 +74,3 @@ public class LoginFetcher {
         _queue.add(req);
     }
 }
-//ariellefeher
-//123456
-
-//user
-//password
-// password2
-
-//rotem

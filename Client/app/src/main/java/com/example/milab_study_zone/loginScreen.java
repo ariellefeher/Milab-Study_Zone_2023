@@ -31,7 +31,12 @@ public class loginScreen extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { fetchLogin(v); }
+            public void onClick(View v) {
+                fetchLogin(v);
+//                Intent intent2 = new Intent(v.getContext(), MapActivity.class);
+//                startActivity(intent2);
+
+            }
         });
 
 
@@ -46,7 +51,6 @@ public class loginScreen extends AppCompatActivity {
         });
     }
 
-    // TODO: fix Login Process
     public void fetchLogin(final View v){
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
@@ -73,14 +77,5 @@ public class loginScreen extends AppCompatActivity {
 
         });
 
-
-//        if (username.equals("user") && password.equals("password")) {
-//            Intent intent = new Intent(v.getContext(), MapActivity.class);
-//            startActivity(intent);
-
-                    //If there is an authentication problem
-//        } else {
-//            Toast.makeText(loginScreen.this, "Incorrect Username or Password", Toast.LENGTH_SHORT).show();
-//        }
     }
 }
