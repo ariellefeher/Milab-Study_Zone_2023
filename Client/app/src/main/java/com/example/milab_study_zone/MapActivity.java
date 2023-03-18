@@ -124,7 +124,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     public boolean onMarkerClick(Marker marker) {
         // Launch a separate activity when the marker is clicked
         String title = marker.getTitle();
-        switch (Objects.requireNonNull(title)) {
+        switch (title) {
             case "Entrepreneurship Building":
                 Intent intent1 = new Intent(this, EntreBuilding.class);
                 startActivity(intent1);
