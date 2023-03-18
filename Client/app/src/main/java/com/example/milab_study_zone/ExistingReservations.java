@@ -57,7 +57,6 @@ public class ExistingReservations extends AppCompatActivity {
                 }
 
                 //if successful
-
                 ReservationAdapter adapter = new ReservationAdapter(response.study_reservations);
                 recyclerView.setAdapter(adapter);
 

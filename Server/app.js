@@ -96,6 +96,8 @@ app.get("/getreservations", async(req, res) => {
         return res.json({ success: false, message: "Invalid login credentials" });
       }
 
+      //If Successful
+        console.log("Fetching User Reservation Array...");
         return res.json({ username: username, success: true, study_reservations: user.study_reservations}); 
           
     }); 
