@@ -43,7 +43,7 @@ app.post("/signup", async (req, res) => {
       //If No Username Exists in the DB already
       const newUser = await info.insertOne({username: username, password : password});
       
-      console.log("User Successfully Registered in DB!" + newUser.username + " Password: "+newUser.password);
+      console.log("User Successfully Registered in DB!" + username + " with Password: "+ password);
 
       return res.json({username: username, password: password, success: true});
 
