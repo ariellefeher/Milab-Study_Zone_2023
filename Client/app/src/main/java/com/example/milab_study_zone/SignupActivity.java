@@ -32,12 +32,12 @@ public class SignupActivity extends AppCompatActivity {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register();
+                register(v);
             }
         });
     }
 
-    private void register() {
+    private void register(final View v) {
         // Get the username and passwords from the EditText views
         String username = usernameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
@@ -55,15 +55,29 @@ public class SignupActivity extends AppCompatActivity {
         }
 
         // TODO: enter into the Node.JS server
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("username", username);
-        editor.putString("password", password);
-        editor.apply();
+        final SignupFetcher fetcher = new SignupFetcher(v.getContext());
+        fetcher.dispatchRequest(username, password, new SignupFetcher.SignupResponseListener() {
+
+            public void onResponse(SignupFetcher.SignupResponse response) {
+
+                if (response.isError) {
+                    Toast.makeText(v.getContext(), "Error with Signup Process", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if (response.success == false) {
+                    Toast.makeText(v.getContext(), "", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //if successful authentication
+                Intent intent2 = new Intent(v.getContext(), loginScreen.class);
+                startActivity(intent2);
+
+            }
+
+        });
 
         //Return to Log in Screen
-        Intent intent = new Intent(this, loginScreen.class);
-        startActivity(intent);
-        finish();
+
     }
 }

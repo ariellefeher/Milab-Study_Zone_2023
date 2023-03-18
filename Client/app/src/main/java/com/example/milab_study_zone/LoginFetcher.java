@@ -19,7 +19,6 @@ public class LoginFetcher {
         public boolean isError;
         public String username;
         public String password;
-       // public String lwtToken;
         public Boolean success;
 
 
