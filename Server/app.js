@@ -173,7 +173,7 @@ app.get("/createreservation", async(req, res) => {
         return res.json({ success: false, error: 'Username Error' });
       }
 
-      const user = await userinfo.updateOne( {username: username, 'study_reservations.location': location}, {$push: {study_reservations: {Location: location, Day: day}}});
+      const updateduser = await userinfo.updateOne( {username: username, 'study_reservations.location': location}, {$push: {study_reservations: {Location: location, Day: day}}});
       
       console.log("Updated in " + username + "'s reservations");
 

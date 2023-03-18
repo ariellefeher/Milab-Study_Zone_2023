@@ -23,11 +23,16 @@ import java.util.Objects;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private MapView mapView;
+    private String username;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        Intent intent = getIntent();
+        username = intent.getStringExtra("username");
+        password = intent.getStringExtra("password");
 
         mapView = findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
@@ -137,30 +142,44 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         switch (title) {
             case "Entrepreneurship Building":
                 Intent intent1 = new Intent(this, EntreBuilding.class);
+                intent1.putExtra("username", username);
+                intent1.putExtra("password", password);
                 startActivity(intent1);
                 break;
             case "Law Building":
                 Intent intent2 = new Intent(this, LawBuilding.class);
+                intent2.putExtra("username", username);
+                intent2.putExtra("password", password);
                 startActivity(intent2);
                 break;
             case "Psychology Building":
                 Intent intent3 = new Intent(this, PsychBuilding.class);
+                intent3.putExtra("username", username);
+                intent3.putExtra("password", password);
                 startActivity(intent3);
                 break;
             case "Computer Science Building":
                 Intent intent4 = new Intent(this, CompSciBuilding.class);
+                intent4.putExtra("username", username);
+                intent4.putExtra("password", password);
                 startActivity(intent4);
                 break;
             case "Hangar":
                 Intent intent5 = new Intent(this, HangarBuilding.class);
+                intent5.putExtra("username", username);
+                intent5.putExtra("password", password);
                 startActivity(intent5);
                 break;
             case "Library":
                 Intent intent6 = new Intent(this, LibraryBuilding.class);
+                intent6.putExtra("username", username);
+                intent6.putExtra("password", password);
                 startActivity(intent6);
                 break;
             case "Government Building":
                 Intent intent7 = new Intent(this, GovBuilding.class);
+                intent7.putExtra("username", username);
+                intent7.putExtra("password", password);
                 startActivity(intent7);
                 break;
 
