@@ -120,7 +120,7 @@ app.get("/buildingreservations", async(req, res) => {
 
       //If Successful
         console.log("Fetching Location Availability Array...");
-        return res.json({ location: location, success: true, study_reservations: user.study_reservations}); 
+        return res.json({ location: location, success: true, study_reservations: building.study_reservations}); 
           
     }); 
     
@@ -173,12 +173,16 @@ app.get("/createreservation", async(req, res) => {
         return res.json({ success: false, error: 'Username Error' });
       }
 
-      const updateduser = await userinfo.updateOne( {username: username, 'study_reservations.location': location}, {$push: {study_reservations: {Location: location, Day: day}}});
+      const updateduser = await userinfo.updateOne( {username: username}, { $push: { 
+        study_reservations: { 
+          Location: location, 
+          Day: day 
+        }}});
       
       console.log("Updated in " + username + "'s reservations");
 
-      return res.json({location: location, username: username, success: true, buildings_reservations: building.study_reservations, user_reservations: user.study_reservations});
-
+      
+      return res.json({location: location, day: day, username: username, success: true});
 
     }); 
     

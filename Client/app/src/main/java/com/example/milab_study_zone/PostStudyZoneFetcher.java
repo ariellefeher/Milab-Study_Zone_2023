@@ -22,18 +22,16 @@ public class PostStudyZoneFetcher {
         public String day;
         public String username;
         public Boolean success;
-        public JSONArray buildings_reservations;
-        public JSONArray user_reservations;
 
 
-        public PostStudyZoneResponse(boolean isError, String location, String day, String username, Boolean success, JSONArray buildings_reservations, JSONArray user_reservations) {
+
+        public PostStudyZoneResponse(boolean isError, String location, String day, String username, Boolean success) {
             this.isError = isError;
             this.location = location;
             this.username = username;
             this.day = day;
             this.success = success;
-            this.buildings_reservations = buildings_reservations;
-            this.user_reservations = user_reservations;
+
 
         }
     }
@@ -47,7 +45,7 @@ public class PostStudyZoneFetcher {
     }
 
     private PostStudyZoneResponse createErrorResponse() {
-        return new PostStudyZoneResponse(true, null, null, null, null, null, null);
+        return new PostStudyZoneResponse(true, null, null, null, null);
     }
 
     public void dispatchRequest(final String location, final String day, final String username, final PostStudyZoneResListener listener) {
@@ -62,9 +60,7 @@ public class PostStudyZoneFetcher {
                                     response.getString("location"),
                                     response.getString("day"),
                                     response.getString("username"),
-                                    response.getBoolean("success"),
-                                    response.getJSONArray("buildings_reservations"),
-                                    response.getJSONArray("user_reservations"));
+                                    response.getBoolean("success"));
 
                             listener.onResponse(res);
                         }
