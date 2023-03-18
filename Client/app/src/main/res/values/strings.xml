@@ -19,4 +19,7 @@
     <string name="title_activity_gov_building">GovBuilding</string>
     <string name="title_activity_homepage">Homepage</string>
     <string name="title_activity_existing_reservations">ExistingReservations</string>
+    <string name="entrepreneurship_building">Entrepreneurship Building</string>
+    <string name="adelson_school_of_entrepreneurship">Adelson School of Entrepreneurship</string>
+    <string name="back">Back</string>
 </resources>

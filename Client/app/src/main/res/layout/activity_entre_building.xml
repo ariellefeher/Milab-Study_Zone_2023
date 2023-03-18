@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:backgroundTint="@color/white">
 
     <TextView
         android:id="@+id/entre_place_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="30dp"
-        android:text="Entrepreneurship Building"
+        android:text="@string/entrepreneurship_building"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -19,8 +21,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/entre_place_name"
         android:layout_marginTop="6dp"
-        android:text="Adelson School of Entrepreneurship"
+        android:text="@string/adelson_school_of_entrepreneurship"
         android:textAlignment="center"
         android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/backButtonEntre"
+        android:layout_width="74dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/black"
+        android:text="@string/back"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+
 
 </RelativeLayout>

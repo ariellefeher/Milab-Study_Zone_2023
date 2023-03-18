@@ -38,7 +38,7 @@ app.post("/signup", async (req, res) => {
       }
 
       //If No Username Exists in the DB already
-      const newUser = await info.insertOne({username: username, password : password});
+      const newUser = await info.insertOne({username: username, password : password,study_reservations: [] });
       
       console.log("User Successfully Registered in DB!" + username + " with Password: "+ password);
 
@@ -80,4 +80,28 @@ app.get("/login", async(req, res) => {
     }); 
     
 
+});
+
+
+/*B. Get User Reservations */
+app.get("/getreservations", async(req, res) => {
+  let username = req.query.username;
+  let password = req.query.password;
+
+  console.log("Input - Username: "+username + ", Password: "+password);
+
+    client.connect().then(async() => {
+      const info = client.db(db_name).collection(user_collection);
+      const user = await info.findOne({username: username});
+      
+      
+      if (user == null) {
+        console.log("User Not Found");
+        return res.json({ success: false, message: "Invalid login credentials" });
+      }
+
+        return res.json({ username: username, success: true, study_reservations: user.study_reservations}); 
+          
+    }); 
+    
 });

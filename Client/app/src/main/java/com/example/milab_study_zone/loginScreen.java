@@ -10,9 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.app.ProgressDialog;
-
-
 
 public class loginScreen extends AppCompatActivity {
     private EditText usernameEditText;
@@ -33,9 +30,6 @@ public class loginScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fetchLogin(v);
-//                Intent intent2 = new Intent(v.getContext(), MapActivity.class);
-//                startActivity(intent2);
-
             }
         });
 
@@ -71,6 +65,8 @@ public class loginScreen extends AppCompatActivity {
 
                 //if successful authentication
                     Intent intent2 = new Intent(v.getContext(), Homepage.class);
+                intent2.putExtra("username", username);
+                intent2.putExtra("password", password);
                     startActivity(intent2);
 
             }
