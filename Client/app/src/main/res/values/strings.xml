@@ -17,4 +17,6 @@
     <string name="title_activity_hangar_building">HangarBuilding</string>
     <string name="title_activity_library_building">LibraryBuilding</string>
     <string name="title_activity_gov_building">GovBuilding</string>
+    <string name="title_activity_homepage">Homepage</string>
+    <string name="title_activity_existing_reservations">ExistingReservations</string>
 </resources>
