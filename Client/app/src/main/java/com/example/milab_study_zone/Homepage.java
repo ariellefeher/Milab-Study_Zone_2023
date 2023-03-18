@@ -38,7 +38,7 @@ public class Homepage extends AppCompatActivity {
             }
         });
 
-        //See your Reservations
+        //See your Reservation
         viewReservationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

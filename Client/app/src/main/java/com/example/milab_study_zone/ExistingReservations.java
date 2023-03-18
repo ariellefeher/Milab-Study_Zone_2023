@@ -42,27 +42,28 @@ public class ExistingReservations extends AppCompatActivity {
                 fetchReservations(v);
             }
         });
+
+        fetchReservations(getResButton); // automatically fetch reservations on activity creation
     }
 
     public void fetchReservations(final View v) {
-
         final ExistingReservationFetcher fetcher = new ExistingReservationFetcher(v.getContext());
-        fetcher.dispatchRequest(username, password, new ExistingReservationFetcher.ExisResResponseListener() {
+                fetcher.dispatchRequest(username, password, new ExistingReservationFetcher.ExisResResponseListener() {
 
-            public void onResponse(ExistingReservationFetcher.ExisResResponse response) {
+                    public void onResponse(ExistingReservationFetcher.ExisResResponse response) {
 
-                if (response.isError) {
-                    Toast.makeText(v.getContext(), "Error Fetching User Reservations", Toast.LENGTH_LONG).show();
-                    return;
-                }
+                        if (response.isError) {
+                            Toast.makeText(v.getContext(), "Error Fetching User Reservations", Toast.LENGTH_LONG).show();
+                            return;
+                        }
 
-                //if successful
-                ReservationAdapter adapter = new ReservationAdapter(response.study_reservations);
-                recyclerView.setAdapter(adapter);
+                        //if successful
+                        ReservationAdapter adapter = new ReservationAdapter(response.study_reservations);
+                        recyclerView.setAdapter(adapter);
 
-            }
+                    }
 
-        });
-
+                });
     }
+
 }
