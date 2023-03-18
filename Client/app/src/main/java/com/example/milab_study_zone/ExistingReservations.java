@@ -42,7 +42,13 @@ public class ExistingReservations extends AppCompatActivity {
                 fetchReservations(v);
             }
         });
-
+        Button backButton = findViewById(R.id.backButtonRes);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // finish the activity and return to the previous screen
+            }
+        });
         fetchReservations(getResButton); // automatically fetch reservations on activity creation
     }
 

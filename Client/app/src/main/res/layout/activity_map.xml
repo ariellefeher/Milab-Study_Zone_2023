@@ -9,4 +9,17 @@
         android:layout_height="match_parent"
         android:contentDescription="Map view of the surrounding area."/>
 
+    <Button
+        android:id="@+id/backButtonMap"
+        android:layout_width="74dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/black"
+        android:text="@string/back"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
+
 </RelativeLayout>
