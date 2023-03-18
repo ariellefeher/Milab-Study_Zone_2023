@@ -54,7 +54,6 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        // TODO: enter into the Node.JS server
         final SignupFetcher fetcher = new SignupFetcher(v.getContext());
         fetcher.dispatchRequest(username, password, new SignupFetcher.SignupResponseListener() {
 
@@ -70,14 +69,13 @@ public class SignupActivity extends AppCompatActivity {
                 }
 
                 //if successful authentication
-                Intent intent2 = new Intent(v.getContext(), loginScreen.class);
+                Intent intent2 = new Intent(v.getContext(), Homepage.class);
                 startActivity(intent2);
 
             }
 
         });
 
-        //Return to Log in Screen
 
     }
 }

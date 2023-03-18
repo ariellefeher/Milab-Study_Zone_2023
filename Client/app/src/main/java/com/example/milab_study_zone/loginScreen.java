@@ -70,7 +70,7 @@ public class loginScreen extends AppCompatActivity {
                 }
 
                 //if successful authentication
-                    Intent intent2 = new Intent(v.getContext(), MapActivity.class);
+                    Intent intent2 = new Intent(v.getContext(), Homepage.class);
                     startActivity(intent2);
 
             }
