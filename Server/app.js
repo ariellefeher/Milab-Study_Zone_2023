@@ -150,20 +150,19 @@ app.get("/createreservation", async(req, res) => {
       const dayIsAvailable = await info.findOne({
         location: location,
         'study_reservations.Day': day,
-        'study_reservations.isAvailable': true
+        'study_reservations.isAvailable': {$eq: false}
       });
     
-      if (dayIsAvailable == null) {
+      if (dayIsAvailable) {
         console.log(`Day ${day}  not available for location ${location}`);
         return res.json({ success: false, error: `Day ${day} is not available for location ${location}` });
       }
 
       const building = await info.updateOne( {location: location, 'study_reservations.Day': day}, {$set: {'study_reservations.$.isAvailable': false}});
       console.log("Updated in " + location + "'s reservations");
-    }); 
 
      /* Step Two: Creating in the Users Array */
-     client.connect().then(async() => {
+     
       const userinfo = client.db(db_name).collection(user_collection);
       
       const isUser = await userinfo.findOne({username: username});
