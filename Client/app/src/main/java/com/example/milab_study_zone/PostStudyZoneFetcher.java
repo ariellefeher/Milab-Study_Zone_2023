@@ -19,16 +19,18 @@ public class PostStudyZoneFetcher {
     public class PostStudyZoneResponse {
         public boolean isError;
         public String location;
+        public String day;
         public String username;
         public Boolean success;
         public JSONArray buildings_reservations;
         public JSONArray user_reservations;
 
 
-        public PostStudyZoneResponse(boolean isError, String location, String username, Boolean success, JSONArray buildings_reservations, JSONArray user_reservations) {
+        public PostStudyZoneResponse(boolean isError, String location, String day, String username, Boolean success, JSONArray buildings_reservations, JSONArray user_reservations) {
             this.isError = isError;
             this.location = location;
             this.username = username;
+            this.day = day;
             this.success = success;
             this.buildings_reservations = buildings_reservations;
             this.user_reservations = user_reservations;
@@ -45,12 +47,12 @@ public class PostStudyZoneFetcher {
     }
 
     private PostStudyZoneResponse createErrorResponse() {
-        return new PostStudyZoneResponse(true, null, null, null, null, null);
+        return new PostStudyZoneResponse(true, null, null, null, null, null, null);
     }
 
-    public void dispatchRequest(final String location, final String username, final PostStudyZoneResListener listener) {
+    public void dispatchRequest(final String location, final String day, final String username, final PostStudyZoneResListener listener) {
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL + "?location=" + location + "&username=" + username, null,
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL + "?location=" + location + "&day=" + day + "&username=" + username, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -58,6 +60,7 @@ public class PostStudyZoneFetcher {
                         try {
                             PostStudyZoneResponse res = new PostStudyZoneResponse(false,
                                     response.getString("location"),
+                                    response.getString("day"),
                                     response.getString("username"),
                                     response.getBoolean("success"),
                                     response.getJSONArray("buildings_reservations"),
