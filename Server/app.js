@@ -2,11 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
-/*Creating Server Connection */
+/*Creating Connection To Server and MongoDB Database */
 const app = express();
 const port = 3000; 
 
-/* Creating Connection to MongoDB DataBase */
 const mongo_db_url = 'mongodb+srv://arielleandrotem:Milab123@study-zones.wrx9of8.mongodb.net/?retryWrites=true&w=majority';
 const client = new MongoClient(mongo_db_url, {useNewUrlParser:true, useUnifiedTopology:true});
 
@@ -80,7 +79,7 @@ app.get("/login", async(req, res) => {
 });
 
 
-/*B. Get User Reservations */
+/*C. Get User Reservations */
 app.get("/getreservations", async(req, res) => {
   let username = req.query.username;
   let password = req.query.password;
@@ -93,12 +92,60 @@ app.get("/getreservations", async(req, res) => {
       
       if (user == null) {
         console.log("User Not Found");
-        return res.json({ success: false, message: "Invalid login credentials" });
+        return res.json({ success: false, message: "Invalid Input" });
       }
 
       //If Successful
         console.log("Fetching User Reservation Array...");
         return res.json({ username: username, success: true, study_reservations: user.study_reservations}); 
+          
+    }); 
+    
+});
+
+/*D. Get Building Reservations */
+app.get("/buildingreservations", async(req, res) => {
+  let location = req.query.location;
+
+  console.log("Input - Location: "+ location);
+
+    client.connect().then(async() => {
+      const info = client.db(db_name).collection(study_zone_collection);
+      const building = await info.findOne({location: location});
+      
+      if (building == null) {
+        console.log("Location Not Found");
+        return res.json({ success: false, message: "Invalid Input" });
+      }
+
+      //If Successful
+        console.log("Fetching Location Availability Array...");
+        return res.json({ location: location, success: true, study_reservations: user.study_reservations}); 
+          
+    }); 
+    
+});
+
+
+/*E. Creating New Building Reservation */
+app.get("/createreservation", async(req, res) => {
+  let location = req.query.location;
+  let username = req.query.username;
+
+  console.log("Input - Location: "+ location);
+
+    client.connect().then(async() => {
+      const info = client.db(db_name).collection(study_zone_collection);
+      const building = await info.findOne({location: location});
+      
+      if (building == null) {
+        console.log("Location Not Found");
+        return res.json({ success: false, message: "Invalid Input" });
+      }
+
+      //If Successful
+        console.log("Fetching Location Availability Array...");
+        return res.json({ location: location, success: true, study_reservations: user.study_reservations}); 
           
     }); 
     

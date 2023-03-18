@@ -44,9 +44,9 @@ public class GetStudyZoneFetcher {
         return new GetStudyZoneResponse(true, null, null, null);
     }
 
-    public void dispatchRequest(final String username, final GetStudyZoneResListener listener) {
+    public void dispatchRequest(final String location, final GetStudyZoneResListener listener) {
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL + "?location=" + username, null,
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL + "?location=" + location, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

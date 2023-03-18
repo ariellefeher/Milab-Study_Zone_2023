@@ -14,20 +14,24 @@ import org.json.JSONObject;
 
 public class PostStudyZoneFetcher {
     private RequestQueue _queue;
-    private final static String REQUEST_URL = "http://10.0.2.2:3000/buildingreservations";
+    private final static String REQUEST_URL = "http://10.0.2.2:3000/createreservation";
 
     public class PostStudyZoneResponse {
         public boolean isError;
         public String location;
+        public String username;
         public Boolean success;
-        public JSONArray study_reservations;
+        public JSONArray buildings_reservations;
+        public JSONArray user_reservations;
 
 
-        public PostStudyZoneResponse(boolean isError, String location, Boolean success, JSONArray study_reservations) {
+        public PostStudyZoneResponse(boolean isError, String location, String username, Boolean success, JSONArray buildings_reservations, JSONArray user_reservations) {
             this.isError = isError;
             this.location = location;
+            this.username = username;
             this.success = success;
-            this.study_reservations = study_reservations;
+            this.buildings_reservations = buildings_reservations;
+            this.user_reservations = user_reservations;
 
         }
     }
@@ -41,12 +45,12 @@ public class PostStudyZoneFetcher {
     }
 
     private PostStudyZoneResponse createErrorResponse() {
-        return new PostStudyZoneResponse(true, null, null, null);
+        return new PostStudyZoneResponse(true, null, null, null, null, null);
     }
 
-    public void dispatchRequest(final String username, final PostStudyZoneResListener listener) {
+    public void dispatchRequest(final String location, final String username, final PostStudyZoneResListener listener) {
 
-        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL + "?location=" + username, null,
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, REQUEST_URL + "?location=" + location + "&username=" + username, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -54,8 +58,10 @@ public class PostStudyZoneFetcher {
                         try {
                             PostStudyZoneResponse res = new PostStudyZoneResponse(false,
                                     response.getString("location"),
+                                    response.getString("username"),
                                     response.getBoolean("success"),
-                                    response.getJSONArray("study_reservations"));
+                                    response.getJSONArray("buildings_reservations"),
+                                    response.getJSONArray("user_reservations"));
 
                             listener.onResponse(res);
                         }
