@@ -26,13 +26,13 @@ public class CompSciBuilding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comp_sci_building);
 
-        placeNameTextView = findViewById(R.id.law_place_name);
-        placeDescriptionTextView = findViewById(R.id.law_place_description);
+        placeNameTextView = findViewById(R.id.compsci_place_name);
+        placeDescriptionTextView = findViewById(R.id.compsci_place_description);
 
         placeNameTextView.setText("Computer Science Building");
         placeDescriptionTextView.setText("");
 
-        Button backButtonLaw = findViewById(R.id.backButtonLaw);
+        Button backButtonLaw = findViewById(R.id.backButtonCompSci);
         backButtonLaw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -26,13 +26,13 @@ public class HangarBuilding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangar_building);
 
-        placeNameTextView = findViewById(R.id.law_place_name);
-        placeDescriptionTextView = findViewById(R.id.law_place_description);
+        placeNameTextView = findViewById(R.id.hangar_place_name);
+        placeDescriptionTextView = findViewById(R.id.hangar_place_description);
 
         placeNameTextView.setText("Hangar");
         placeDescriptionTextView.setText("");
 
-        Button backButtonLaw = findViewById(R.id.backButtonLaw);
+        Button backButtonLaw = findViewById(R.id.backButtonHangar);
         backButtonLaw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

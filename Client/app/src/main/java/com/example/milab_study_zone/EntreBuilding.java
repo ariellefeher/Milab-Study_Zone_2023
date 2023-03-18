@@ -26,13 +26,13 @@ public class EntreBuilding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entre_building);
 
-        placeNameTextView = findViewById(R.id.law_place_name);
-        placeDescriptionTextView = findViewById(R.id.law_place_description);
+        placeNameTextView = findViewById(R.id.entre_place_name);
+        placeDescriptionTextView = findViewById(R.id.entre_place_description);
 
         placeNameTextView.setText("Entrepreneurship Building");
         placeDescriptionTextView.setText("");
 
-        Button backButtonLaw = findViewById(R.id.backButtonLaw);
+        Button backButtonLaw = findViewById(R.id.backButtonEntre);
         backButtonLaw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

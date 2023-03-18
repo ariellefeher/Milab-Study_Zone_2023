@@ -26,13 +26,13 @@ public class PsychBuilding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_psych_building);
 
-        placeNameTextView = findViewById(R.id.law_place_name);
-        placeDescriptionTextView = findViewById(R.id.law_place_description);
+        placeNameTextView = findViewById(R.id.psych_place_name);
+        placeDescriptionTextView = findViewById(R.id.psych_place_description);
 
         placeNameTextView.setText("Psychology Building");
         placeDescriptionTextView.setText("");
 
-        Button backButtonLaw = findViewById(R.id.backButtonLaw);
+        Button backButtonLaw = findViewById(R.id.backButtonPsych);
         backButtonLaw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

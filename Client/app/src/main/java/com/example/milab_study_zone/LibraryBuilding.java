@@ -26,13 +26,13 @@ public class LibraryBuilding extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library_building);
 
-        placeNameTextView = findViewById(R.id.law_place_name);
-        placeDescriptionTextView = findViewById(R.id.law_place_description);
+        placeNameTextView = findViewById(R.id.library_place_name);
+        placeDescriptionTextView = findViewById(R.id.library_place_description);
 
         placeNameTextView.setText("Library");
         placeDescriptionTextView.setText("");
 
-        Button backButtonLaw = findViewById(R.id.backButtonLaw);
+        Button backButtonLaw = findViewById(R.id.backButtonLibrary);
         backButtonLaw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
