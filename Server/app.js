@@ -6,58 +6,56 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const port = 3000; 
 
-const mongo_db_url = 'mongodb+srv://arielleandrotem:Milab123@study-zones.wrx9of8.mongodb.net/?retryWrites=true&w=majority';
-const client = new MongoClient(mongo_db_url, {useNewUrlParser:true, useUnifiedTopology:true});
-
-const db_name = "Study-Zones";
-const user_collection = "Users";
-
-const saltRounds = 10; 
-
 app.use(bodyParser.json());
 
 app.listen(port, () => {
   console.log(`Connected to port ${port} woohoo!`);
 });
 
+const mongo_db_url = 'mongodb+srv://arielleandrotem:Milab123@study-zones.wrx9of8.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(mongo_db_url, {useNewUrlParser:true, useUnifiedTopology:true});
 
+const db_name = "Study-Zones";
+const user_collection = "Users";
+const study_zone_collection = "Available-Areas";
 
+//const saltRounds = 10; 
 
-// /*A. User Registration */
-// //const User = require("./model/User");
+/*A. User Registration */
 
-// app.post("/signup", async (req, res) => {
-//   let username = req.query.username;
-//   let password = req.query.password;
-//   //const { username, password } = req.body;
+app.post("/signup", async (req, res) => {
+  let username = req.query.username;
+  let password = req.query.password;
+  console.log("Input - Username: "+username + ", Password: "+password);
 
-//   try {
-//     const existingUser = await User.findOne({ username });
-    
-//     if (existingUser) {
-//       return res.status(400).send({ error: 'Username already exists' });
-//     }
+    client.connect().then(async() => {
+      const info = client.db(db_name).collection(user_collection);
 
-//     const user = new User({ username, password });
+      const existingUser = await info.findOne({username: username});
+      
+      if(existingUser != null) {
+        console.log("Username Already Exists");
+        return res.json({ success: false, error: 'Username already exists' });
+      }
 
-//     await user.save();
+      //If No Username Exists in the DB already
+      const newUser = await info.updateOne({username: username, password: password});
+      
+      console.log("User Successfully Registered in DB!");
 
-//     // const token = await user.generateAuthToken();
+      return res.json({success: true, username: username, password:password});
 
-//     return res.status(201).send({ user, password });
+    });
+    client.close();
 
-//   } catch (err) {
-//      return res.status(400).send({ error: err.message });
-//   }
-
-// });
+});
 
 /*B. User Login */
 app.get("/login", async(req, res) => {
   let username = req.query.username;
   let password = req.query.password;
 
-  console.log("Username: "+username + ", Password: "+password);
+  console.log("Input - Username: "+username + ", Password: "+password);
 
     client.connect().then(async() => {
       const info = client.db(db_name).collection(user_collection);
@@ -68,7 +66,7 @@ app.get("/login", async(req, res) => {
         console.log("User Not Found");
         return res.json({ success: false, message: "Invalid login credentials" });
       }
-      console.log("Found user in DB! The Username in DB: " + user.username + " The Password in DB: "+ user.password);
+      console.log("Found user in DB!! " + user.username + " The Password in DB: "+ user.password);
       
       if( password == user.password) {
         console.log("Login Success!!!");
@@ -81,6 +79,8 @@ app.get("/login", async(req, res) => {
         return res.json({ success: false, message: "Invalid login credentials" });
       }
            
-    });   
+    }); 
+    
+    client.close();
 
 });
