@@ -53,26 +53,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="1dp"
-        android:hint="Which day do you want?"
+        android:hint="Which day would you like to reserve?"
         android:inputType="text"
+        android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/day_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buildingRecyclerView" />
-
-    <Button
-        android:id="@+id/backButtonLaw"
-        android:layout_width="74dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@android:color/black"
-        android:text="@string/back"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/day_button"
@@ -85,8 +73,20 @@
         android:text="Reserve!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day_edit_text" />
+
+    <Button
+        android:id="@+id/backButtonLaw"
+        android:layout_width="74dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/back"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/existResButton"
@@ -95,7 +95,7 @@
         android:layout_marginStart="200dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="27dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginBottom="16dp"
         android:text="Refresh "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
