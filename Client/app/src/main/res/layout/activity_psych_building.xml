@@ -19,8 +19,21 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/psych_place_name"
         android:layout_marginTop="6dp"
-        android:text="Baruch Ivcher School of Psychology and Tiomkin School of Economics"
+        android:text="Baruch Ivcher School of Psychology"
         android:textAlignment="center"
         android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/backButtonPsych"
+        android:layout_width="74dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@android:color/black"
+        android:text="@string/back"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp" />
 
 </RelativeLayout>

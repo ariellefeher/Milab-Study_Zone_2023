@@ -1,6 +1,8 @@
 package com.example.milab_study_zone;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,5 +29,12 @@ public class PsychBuilding extends AppCompatActivity {
             placeNameTextView.setText(placeName);
             placeDescriptionTextView.setText(placeDescription);
         }
+        Button backButtonPsych = findViewById(R.id.backButtonPsych);
+        backButtonPsych.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }

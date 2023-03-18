@@ -1,6 +1,8 @@
 package com.example.milab_study_zone;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,5 +28,12 @@ public class HangarBuilding extends AppCompatActivity {
             placeNameTextView.setText(placeName);
             placeDescriptionTextView.setText(placeDescription);
         }
+        Button backButtonHangar = findViewById(R.id.backButtonHangar);
+        backButtonHangar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 }
