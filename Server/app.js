@@ -81,6 +81,6 @@ app.get("/login", async(req, res) => {
            
     }); 
     
-    client.close();
+    //client.close();
 
 });
