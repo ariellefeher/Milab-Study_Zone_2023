@@ -70,6 +70,8 @@ public class SignupActivity extends AppCompatActivity {
 
                 //if successful authentication
                 Intent intent2 = new Intent(v.getContext(), Homepage.class);
+                intent2.putExtra("username", username);
+                intent2.putExtra("password", password);
                 startActivity(intent2);
 
             }
